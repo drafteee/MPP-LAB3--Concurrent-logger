@@ -1,0 +1,1 @@
+C:\My Documents\GitHub\MPP-LAB3--Concurrent-logger\Concurrent logger\Concurrent logger\bin\Debug\Concurrent logger.exe.config

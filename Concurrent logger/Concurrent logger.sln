@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concurrent logger", "Concurrent logger\Concurrent logger.csproj", "{8EB2E4C2-CDF2-4EF9-8D8E-A696F3A5A97B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concurrent logger Tests", "Concurrent logger Tests\Concurrent logger Tests.csproj", "{A0371215-EF1E-485F-A335-81D07E4A697F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8EB2E4C2-CDF2-4EF9-8D8E-A696F3A5A97B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EB2E4C2-CDF2-4EF9-8D8E-A696F3A5A97B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EB2E4C2-CDF2-4EF9-8D8E-A696F3A5A97B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EB2E4C2-CDF2-4EF9-8D8E-A696F3A5A97B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0371215-EF1E-485F-A335-81D07E4A697F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0371215-EF1E-485F-A335-81D07E4A697F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0371215-EF1E-485F-A335-81D07E4A697F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0371215-EF1E-485F-A335-81D07E4A697F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
