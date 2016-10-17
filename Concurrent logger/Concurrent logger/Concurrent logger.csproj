@@ -43,7 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutLog.cs" />
+    <Compile Include="ILogger.cs" />
+    <Compile Include="ILoggerTarget.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="LoggerTarget.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
