@@ -1,0 +1,9 @@
+C:\My Documents\GitHub\MPP-LAB3--Concurrent-logger\Concurrent logger\Concurrent logger Tests\bin\Debug\Concurrent logger Tests.dll
+C:\My Documents\GitHub\MPP-LAB3--Concurrent-logger\Concurrent logger\Concurrent logger Tests\bin\Debug\Concurrent logger Tests.pdb
+C:\My Documents\GitHub\MPP-LAB3--Concurrent-logger\Concurrent logger\Concurrent logger Tests\bin\Debug\Concurrent logger.exe
+C:\My Documents\GitHub\MPP-LAB3--Concurrent-logger\Concurrent logger\Concurrent logger Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\My Documents\GitHub\MPP-LAB3--Concurrent-logger\Concurrent logger\Concurrent logger Tests\bin\Debug\Concurrent logger.pdb
+C:\My Documents\GitHub\MPP-LAB3--Concurrent-logger\Concurrent logger\Concurrent logger Tests\bin\Debug\ru\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+C:\My Documents\GitHub\MPP-LAB3--Concurrent-logger\Concurrent logger\Concurrent logger Tests\obj\Debug\Concurrent logger Tests.csprojResolveAssemblyReference.cache
+C:\My Documents\GitHub\MPP-LAB3--Concurrent-logger\Concurrent logger\Concurrent logger Tests\obj\Debug\Concurrent logger Tests.dll
+C:\My Documents\GitHub\MPP-LAB3--Concurrent-logger\Concurrent logger\Concurrent logger Tests\obj\Debug\Concurrent logger Tests.pdb

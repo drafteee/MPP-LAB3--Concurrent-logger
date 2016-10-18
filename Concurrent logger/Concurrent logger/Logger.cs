@@ -4,7 +4,7 @@ using System.Threading;
 
 namespace Concurrent_logger
 {
-    class Logger : ILogger
+    public class Logger : ILogger
     {
         private byte limit;
         private List<AboutLog> bufferLogs;
@@ -31,6 +31,7 @@ namespace Concurrent_logger
 
             if (bufferLogs.Count == limit)
             {
+                while (flag != 0) { }
                 queueBuffers.Enqueue(bufferLogs);
                 bufferLogs = new List<AboutLog>();
             }
@@ -38,10 +39,11 @@ namespace Concurrent_logger
             bufferLogs.Add((new AboutLog(level, message)));
             index++;
 
-            (new AboutLog(level, message)).Print();
 
             Monitor.PulseAll(locker);
             Monitor.Exit(locker);
+            (new AboutLog(level, message)).Print();
+
         }
 
         public void FlushReamainLogs()
@@ -52,22 +54,22 @@ namespace Concurrent_logger
                     currentTarget.Flush(log);
             }
         }
-
         public void ProcessingQueue()
         {
             while (true)
             {
-                foreach (ILoggerTarget currentTarget in targets)
+                flag++;
+
+                for (int i = 0; i < queueBuffers.Count; i++)
                 {
-                    flag++;
-                    for (int i = 0; i < queueBuffers.Count; i++)
-                    {
-                        var list = queueBuffers.Dequeue();
-                        foreach (AboutLog log in list)
+                    var list = queueBuffers.Dequeue();
+                    foreach (AboutLog log in list)
+                        foreach (ILoggerTarget currentTarget in targets)
+                        {
                             currentTarget.Flush(log);
-                    }
-                    flag--;
+                        }
                 }
+                flag--;
             }
         }
     }
