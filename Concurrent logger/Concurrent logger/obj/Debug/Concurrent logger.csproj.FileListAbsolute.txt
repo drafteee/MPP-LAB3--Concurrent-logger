@@ -1,1 +1,6 @@
 C:\My Documents\GitHub\MPP-LAB3--Concurrent-logger\Concurrent logger\Concurrent logger\bin\Debug\Concurrent logger.exe.config
+C:\My Documents\GitHub\MPP-LAB3--Concurrent-logger\Concurrent logger\Concurrent logger\bin\Debug\Concurrent logger.exe
+C:\My Documents\GitHub\MPP-LAB3--Concurrent-logger\Concurrent logger\Concurrent logger\bin\Debug\Concurrent logger.pdb
+C:\My Documents\GitHub\MPP-LAB3--Concurrent-logger\Concurrent logger\Concurrent logger\obj\Debug\Concurrent logger.csprojResolveAssemblyReference.cache
+C:\My Documents\GitHub\MPP-LAB3--Concurrent-logger\Concurrent logger\Concurrent logger\obj\Debug\Concurrent logger.exe
+C:\My Documents\GitHub\MPP-LAB3--Concurrent-logger\Concurrent logger\Concurrent logger\obj\Debug\Concurrent logger.pdb

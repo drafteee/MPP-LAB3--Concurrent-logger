@@ -1,33 +1,50 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Concurrent_logger
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Input limit of buffer:");
+        public static volatile int index;
 
+        private static void Main(string[] args)
+        {
+            Console.Write("Input limit of buffer:");
             byte limit = Convert.ToByte(Console.ReadLine());
+
+            Console.Write("Input count logs:");
+            int countLogs = Convert.ToInt32(Console.ReadLine());
+
             FileStream fileStream = new FileStream(@"C:\My Documents\GitHub\MPP-LAB3--Concurrent-logger\Concurrent logger\Concurrent logger\output.txt", FileMode.OpenOrCreate);
             LoggerTarget loggetTarget = new LoggerTarget(fileStream);
             ILoggerTarget[] iLoggerTarget = new ILoggerTarget[] { loggetTarget };
-            Logger logger = new Logger(limit,iLoggerTarget);
+            Logger logger = new Logger(limit, iLoggerTarget);
 
-            for (int i = 0; i < 500; i++)
+            Task.Run(() =>
             {
-                logger.Log(LogLevel.Info, "task" + i);
+                logger.ProcessingQueue();
+            });
+
+            for (int i = 0; i < countLogs; i++)
+            {
+                string a = "task " + i;
+                Task.Run(() =>
+                {
+                    logger.Log(LogLevel.Info, a);
+                    index++;
+                });
             }
 
-            fileStream.Close();
-            fileStream.Dispose();
+            while (index != countLogs)
+                if (index == countLogs)
+                {
+                    logger.FlushReamainLogs();
+                    fileStream.Close();
+                    fileStream.Dispose();
 
-            Console.ReadKey();
+                    Console.ReadKey();
+                }
         }
     }
 }

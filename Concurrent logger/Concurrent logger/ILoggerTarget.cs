@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace Concurrent_logger
 {
     public interface ILoggerTarget
     {
-        bool Flush();
-        Task<bool> FlushAsync();
+        bool Flush(AboutLog log);
+
+        Task<bool> FlushAsync(AboutLog log);
     }
 }

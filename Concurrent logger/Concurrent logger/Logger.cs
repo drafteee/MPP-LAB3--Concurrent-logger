@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Concurrent_logger
 {
@@ -11,37 +8,67 @@ namespace Concurrent_logger
     {
         private byte limit;
         private List<AboutLog> bufferLogs;
-        private List<Task> listTasks;
         private ILoggerTarget[] targets;
-        private volatile int bufferId;
-        private class ThreadInfo
-        {
-            public List<AboutLog> logs;
-            public int threadId;
-        }
+        private Queue<List<AboutLog>> queueBuffers;
+        private volatile int index;
+        private volatile int flag = 0;
+        private object locker = new object();
+
         public Logger(byte limit, ILoggerTarget[] targets)
         {
             this.limit = limit;
             this.targets = targets;
             bufferLogs = new List<AboutLog>();
+            queueBuffers = new Queue<List<AboutLog>>();
         }
-        public void Log(LogLevel level, string message)
+
+        public void Log(LogLevel level, string message)//вызывает с нескольк потоков
         {
+            Monitor.Enter(locker);
+
+            while (index != Convert.ToInt32(message.Substring(message.Length - (message.Length - 5), message.Length - 5)))
+                Monitor.Wait(locker);
+
             if (bufferLogs.Count == limit)
             {
-                listTasks.Add(Task.Run(() =>
-                {
-                    FlushLogs(new ThreadInfo { logs = bufferLogs, threadId = bufferId++ });
-                }));
+                queueBuffers.Enqueue(bufferLogs);
                 bufferLogs = new List<AboutLog>();
             }
-            bufferLogs.Add(new AboutLog(level,message));
+
+            bufferLogs.Add((new AboutLog(level, message)));
+            index++;
+
+            (new AboutLog(level, message)).Print();
+
+            Monitor.PulseAll(locker);
+            Monitor.Exit(locker);
         }
 
-        private void FlushLogs(ThreadInfo threadInfo)
+        public void FlushReamainLogs()
         {
-
+            foreach (ILoggerTarget currentTarget in targets)
+            {
+                foreach (AboutLog log in bufferLogs)
+                    currentTarget.Flush(log);
+            }
         }
 
+        public void ProcessingQueue()
+        {
+            while (true)
+            {
+                foreach (ILoggerTarget currentTarget in targets)
+                {
+                    flag++;
+                    for (int i = 0; i < queueBuffers.Count; i++)
+                    {
+                        var list = queueBuffers.Dequeue();
+                        foreach (AboutLog log in list)
+                            currentTarget.Flush(log);
+                    }
+                    flag--;
+                }
+            }
+        }
     }
 }
